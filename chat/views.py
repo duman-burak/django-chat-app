@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from .models import *
 from django.contrib.auth.decorators import login_required
+
 def index(request):
     users = User.objects.all().exclude(username=request.user)
     return render(request, "chat/index.html" ,{
@@ -14,12 +15,22 @@ def room(request, room_name):
     users = User.objects.all().exclude(username=request.user)
     room = Room.objects.get(id=room_name)
     messages = Message.objects.filter(room=room)
+    sessiz_kisiler = Mute.objects.filter(muter=request.user)
+    if request.method == 'POST':
+        if request.POST.get("button")=="sessiz":
+            user_id = request.POST.get("user_id")
+            user = User.objects.get(id=user_id)
+            sessiz_kisi = Mute.objects.create(muter=request.user,muted_user=user)
+            sessiz_kisi.save()
+            return redirect("/chat/"+ room_name + "/")
     return render(request, "chat/room2.html", {
         "room_name": room_name,
         'users' : users,
         'room' : room,
         'messages' : messages,
+        'sessiz_kisiler' : sessiz_kisiler,
         })
+
 
 @login_required(login_url='Login')
 def start_chat(request,username):
@@ -48,3 +59,4 @@ def Login(request):
             return redirect("Login")
     
     return render(request, "chat/login.html")
+

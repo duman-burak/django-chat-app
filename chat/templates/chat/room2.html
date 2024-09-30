@@ -47,7 +47,31 @@
                   <div class="col-sm-9 col-xs-9 sideBar-main">
                     <div class="row">
                       <div class="col-sm-8 col-xs-8 sideBar-name">
-                        <span class="name-meta">{{ user.username }}</span>
+                        <form method="POST">
+                          
+                          {% csrf_token %}
+                          <input type="hidden" name="user_id" value="{{user.id}}">
+                          {% if sessiz_kisiler %}
+                          
+                          {{sessiz_kisiler.muted_user.all}}
+                          {% for sessiz_kisi in sessiz_kisiler %}
+                          {% if sessiz_kisi.muted_user == user %}
+                          <button name="button" value="sessiz">Sessiz</button>
+                          {% else %}
+                          <button name="button" value="sessiz">Sessize al</button>
+                          {% endif %}
+                          
+                          {% endfor %}
+                          {% else %}
+                          <button name="button" value="sessiz">Sessize al</button>
+                          {% endif %}
+                          
+                        <button name="button" value="engelle">engelle</button>  
+                        </form>
+                        
+                        <span class="name-meta">{{ user.username }}
+                          
+                        </span>
                       </div>
                       <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
                         <span class="time-meta pull-right">18:18</span>

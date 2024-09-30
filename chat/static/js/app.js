@@ -17,6 +17,8 @@ function getBase64(file){
     }
 }
 const conservation = document.getElementById('conversation');
+//Scroll
+conservation.scrollTop = conservation.scrollHeight;
 //bağlantı
 const chatSocket = new WebSocket(
     'ws://' + window.location.host + '/ws/chat/' + roomName + '/'
@@ -61,6 +63,8 @@ chatSocket.onmessage = function (e) {
     }
     
     conservation.innerHTML += message;
+    //Scroll
+    conservation.scrollTop = conservation.scrollHeight;
 };
 //websoketten bağlantısı kapandığında 
 chatSocket.onclose = function (e) {
