@@ -29,7 +29,7 @@ docker run -p 6379:6379 -d redis:5
 
    python -m venv myvenv
    source myvenv/bin/activate
- # Windows için: myvenv\Scripts\activate
+   Windows için: myvenv\Scripts\activate
 
 
 4.Gerekli bağımlılıkları yükle:
