@@ -27,8 +27,9 @@ docker run -p 6379:6379 -d redis:5
 
 3. Sanal ortam oluştur ve etkinleştir:
 
-   python -m venv env
-   source env/bin/activate  # Windows için: env\Scripts\activate
+   python -m venv myvenv
+   source myvenv/bin/activate
+ # Windows için: myvenv\Scripts\activate
 
 
 4.Gerekli bağımlılıkları yükle:
