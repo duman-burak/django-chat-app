@@ -17,32 +17,27 @@ docker run -p 6379:6379 -d redis:5
 
 1. Depoyu klonla:
 
-   git clone https://github.com/duman-burak/django-chat-app.git
+  -git clone https://github.com/duman-burak/django-chat-app.git
 
    
 2. Proje dizinine gir:
    
-  cd django-chat-app
+  -cd django-chat-app
 
 
 3. Sanal ortam oluştur ve etkinleştir:
 
-   python -m venv myvenv
-   source myvenv/bin/activate
-   Windows için: myvenv\Scripts\activate
+   -python -m venv myvenv
+   -Windows için: myvenv\Scripts\activate
 
 
-4.Gerekli bağımlılıkları yükle:
-   
-  pip install -r requirements.txt
 
-
-5.Veritabanı migrasyonlarını çalıştır:
+4.Veritabanı migrasyonlarını çalıştır:
 
   python manage.py makemigrations
   python manage.py migrate
 
 
-6.Sunucuyu Çalıştır
+5.Sunucuyu Çalıştır
   
   python manage.py runserver
